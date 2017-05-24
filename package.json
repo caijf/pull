@@ -1,0 +1,22 @@
+{
+  "name": "pull",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pull.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caijf/pull.git"
+  },
+  "author": "caijf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caijf/pull/issues"
+  },
+  "homepage": "https://github.com/caijf/pull#readme"
+}

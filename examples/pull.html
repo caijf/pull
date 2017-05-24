@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <title>下拉刷新Demo</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="parent">
+        <ul class="list-group">
+          <li class="list-group-item">item 1</li>
+          <li class="list-group-item">item 2</li>
+          <li class="list-group-item">item 3</li>
+          <li class="list-group-item">item 4</li>
+          <li class="list-group-item">item 5</li>
+          <li class="list-group-item">item 6</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.bootcss.com/require.js/2.3.3/require.js"></script>
+    <script>
+        require.config({
+            baseUrl: '../',
+            shim: {
+                'Pull': {
+                    deps: ['zepto'],
+                    exports: 'Pull'
+                }
+            },
+            paths: {
+                'zepto': 'https://cdn.bootcss.com/zepto/1.2.0/zepto',
+                'Pull': 'pull'
+            }
+        });
+
+        require(['zepto', 'Pull'], function ($, Pull) {
+
+            var $parent = $('#parent'),
+                $listWrapper = $parent.find('.list-group');
+
+            var pullInstance = new Pull($listWrapper, {
+                onPullDown: function () {
+                    setTimeout(function () {
+                        // pullInstance.pullDownSuccess();
+                        // pullInstance.pullDownFailed();
+                        Math.round(Math.random() + 0.2) ? handlePullRefreshSuccess() : handlePullRefreshFailed();
+                    }, 2000);
+                }
+            });
+
+            var refreshTotal = 0,
+                loadMoreTotal = 0;
+
+            // 创建li dom
+            function createList(str) {
+                return '<li class="list-group-item">'+ str +'</li>';
+            }
+
+            // 处理下拉刷新成功
+            function handlePullRefreshSuccess() {
+
+                var count = Math.round(Math.random()*10);
+
+                while(count){
+                    count--;
+                    $listWrapper.prepend(createList('item refresh ' + refreshTotal));
+                    refreshTotal++;
+                }
+
+                pullInstance.pullDownSuccess();
+            }
+
+            // 处理下拉刷新失败
+            function handlePullRefreshFailed() {
+                pullInstance.pullDownFailed();
+            }
+        })
+    </script>
+</body>
+</html>
