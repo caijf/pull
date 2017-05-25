@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <title>PullJS Examples tab-more-instance usage</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="examples.css"></head>
+<body>
+    <div class="header"><a href="./index.html" class="fl"><span class="icon-back"></span></a>tab-多个实例</div>
+    <div class="main">
+        <ul class="nav nav-tabs" style=" margin: 10px;">
+          <li role="presentation"><a href="#">Tab 1</a></li>
+          <li role="presentation"><a href="#">Tab 2</a></li>
+          <li role="presentation"><a href="#">Tab 3</a></li>
+        </ul>
+        <div class="tab-content" id="tabContent">
+            <div class="tab-panel">
+                <ul class="list-group">
+                    <li class="list-group-item">Tab 1 item 1</li>
+                    <li class="list-group-item">Tab 1 item 2</li>
+                    <li class="list-group-item">Tab 1 item 3</li>
+                    <li class="list-group-item">Tab 1 item 4</li>
+                    <li class="list-group-item">Tab 1 item 5</li>
+                    <li class="list-group-item">Tab 1 item 6</li>
+                </ul>
+            </div>
+            <div class="tab-panel">
+                <ul class="list-group">
+                    <li class="list-group-item">Tab 2 item 1</li>
+                    <li class="list-group-item">Tab 2 item 2</li>
+                    <li class="list-group-item">Tab 2 item 3</li>
+                    <li class="list-group-item">Tab 2 item 4</li>
+                    <li class="list-group-item">Tab 2 item 5</li>
+                    <li class="list-group-item">Tab 2 item 6</li>
+                </ul>
+            </div>
+            <div class="tab-panel">
+                <ul class="list-group">
+                    <li class="list-group-item">Tab 3 item 1</li>
+                    <li class="list-group-item">Tab 3 item 2</li>
+                    <li class="list-group-item">Tab 3 item 3</li>
+                    <li class="list-group-item">Tab 3 item 4</li>
+                    <li class="list-group-item">Tab 3 item 5</li>
+                    <li class="list-group-item">Tab 3 item 6</li>
+                </ul>
+            </div>
+        </div>
+</div>
+
+<script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
+<script src="../dist/pull.min.js"></script>
+<script>
+
+        var index = 0;
+        var currentClass = 'active';
+
+        var $tabLi = $('.nav-tabs li');
+        var $tabContent = $('#tabContent');
+        var $tabPanel = $tabContent.find('.tab-panel');
+
+        // init tab highlight
+        $tabLi.eq(index).addClass(currentClass);
+        $tabPanel.eq(index).show();
+
+        var pullObj = {},
+            pullKeysuffix = 'tabPanel_';
+
+        for(var i = 0, len = $tabLi.length; i < len; i++){
+            pullObj[pullKeysuffix + i] = new Pull($tabPanel.eq(i).find('.list-group'), {
+                // scrollArea: window, // 滚动区域的dom对象或选择器。默认 window
+                // distance: 50, // 下拉多少距离触发onPullDown。默认 50，单位px
+                lock: true, // 锁定操作，锁定后隐藏下拉刷新和上拉加载dom，解锁需调用实例的unlock方法。默认 false
+
+                // 下拉刷新回调方法，如果不存在该方法，则不加载下拉dom
+                onPullDown: function () {
+                    var currentIndex = index;
+                    setTimeout(function () {
+                        Math.round(Math.random() + 0.2) ? handlePullDownSuccess(currentIndex) : handlePullDownFailed(currentIndex);
+                    }, 1000);
+                },
+
+                // // 使用默认模板，只需配置text即可，如果同时配置了pullDownDom，以pullDownDom为主
+                // pullDownText: {
+                //     start: '下拉刷新吗？？？', // 下拉刷新前的文本。默认 下拉刷新
+                //     drop: '放开我，我要刷新', // 下拉刷新触发提示文本。默认 释放刷新
+                //     loading: '使出吃奶的力气刷新。。。', // 下拉刷新中文本。默认 刷新中...
+                //     success: '成功了', // 下拉刷新成功文本。默认 刷新成功
+                //     failed: '失败再试试' // 下拉刷新失败文本。默认 刷新失败
+                // },
+
+                // // 自定义下拉刷新dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
+                // pullDownDom: {
+                //     start: '<div style="color:gray;">下拉刷新吗？？？</div>', // 下拉刷新前的html
+                //     drop: '<div style="color:blue;">放开我，我要刷新</div>', // 下拉刷新触发提示的html
+                //     loading: '<div style="color:black;">使出吃奶的力气刷新。。。</div>', // 下拉刷新中的html
+                //     success: '<div style="color:green;">成功了</div>', // 下拉刷新成功的html
+                //     failed: '<div style="color:red;">失败再试试</div>', // 下拉刷新失败的html
+                // },
+
+                // autoLoad: true, // 自动加载，加载完成立即判断是否触发加载 默认 true
+                // threshold: 100, // 滚动至底部多少距离触发onPullUp。默认 100，单位px
+                onPullUp: function () {
+                    var currentIndex = index;
+                    setTimeout(function () {
+                        // pullInstance.pullUpSuccess();
+                        // pullInstance.pullUpFailed();
+                        // pullInstance.pullUpDone();
+                        Math.round(Math.random() + 0.2) ? handlePullUpSuccess(currentIndex) : handlePullUpFailed(currentIndex);
+                    }, 1000);
+                },
+
+                // 使用默认模板，只需配置text即可，如果同时配置了pullUpDom，以pullUpDom为主
+                // pullUpText: {
+                //     start: '上拉就加载', // 上拉加载前的文本。默认 上拉加载更多
+                //     loading: '加载中', // 上拉加载中文本。默认 正在加载
+                //     failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
+                //     done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
+                // },
+
+                // 自定义上拉加载dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
+                // pullUpDom: {
+                //     start: '<div style="color:gray; height: 50px; line-height: 50px;">上拉就加载</div>', // 上拉加载前的html
+                //     loading: '<div style="color:black; height: 50px; line-height: 50px;">加载中</div>', // 上拉加载中的html
+                //     failed: '<div style="color:red; height: 50px; line-height: 50px;">失败了，点我再试试</div>', // 上拉加载失败的html
+                //     done: '<div style="color:green; height: 50px; line-height: 50px;">加载完成，不会再加载了</div>', // 加载完成的html
+                // },
+            });
+        }
+
+        var pullUpTotal = [0, 0 ,0],
+            pullDownTotal = [0, 0 ,0];
+
+        // 处理下拉刷新成功
+        function handlePullDownSuccess(currentIndex) {
+
+            var count = Math.round(Math.random()*10);
+            var htmlArr = [];
+
+            while(count){
+                count--;
+                htmlArr.unshift(createList('Tab ' + (currentIndex+1) + ' item pullDown ' + pullDownTotal[currentIndex]));
+                pullDownTotal[currentIndex]++;
+            }
+
+            $tabPanel.eq(currentIndex).find('.list-group').prepend($(htmlArr.join('')));
+
+            // 显示下拉刷新成功
+            pullObj[pullKeysuffix+currentIndex].pullDownSuccess();
+        }
+
+        // 处理下拉刷新失败
+        function handlePullDownFailed(currentIndex) {
+            // 显示下拉刷新成功
+            pullObj[pullKeysuffix+currentIndex].pullDownFailed();
+        }
+
+        // 处理上拉加载成功
+        function handlePullUpSuccess(currentIndex) {
+
+            var count = Math.round(Math.random()*10),
+                htmlArr = [];
+
+            while(count){
+                count--;
+                htmlArr.push(createList('Tab ' + (currentIndex+1) + ' item pullUp ' + pullUpTotal[currentIndex]));
+                pullUpTotal[currentIndex]++;
+            }
+
+            $tabPanel.eq(currentIndex).find('.list-group').append(htmlArr.join(''));
+
+            if(pullUpTotal[currentIndex] >= 20){
+                pullObj[pullKeysuffix+currentIndex].pullUpDone();
+            }else{
+                pullObj[pullKeysuffix+currentIndex].pullUpSuccess();
+            }
+        }
+
+        // 处理上拉加载失败
+        function handlePullUpFailed(currentIndex) {
+            pullObj[pullKeysuffix+currentIndex].pullUpFailed();
+        }
+
+        // 创建li dom
+        function createList(str) {
+            return '<li class="list-group-item">'+ str +'</li>';
+        }
+
+        // 当前tab解锁
+        pullObj[pullKeysuffix + index].unlock();
+
+        // tab切换
+        $('.nav-tabs li').on('click', function (e) {
+            var $target = $(e.currentTarget);
+
+            if(!$target.hasClass(currentClass)){
+                pullObj[pullKeysuffix + index].lock();
+                index = $target.index();
+
+                $target.siblings().removeClass(currentClass);
+                $target.addClass(currentClass);
+
+                $tabPanel.hide().eq(index).show();
+                pullObj[pullKeysuffix + index].unlock();
+            }
+        });
+    </script>
+</body>
+</html>

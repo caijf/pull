@@ -16,11 +16,6 @@
     }
 }(this, function () {
 
-    // 组件信息
-    var PLUGIN_NAME = 'Pull',
-        PLUGIN_VERSION = '1.0.0',
-        PAGE_URL = location.href;
-
     // 把$作为内部变量，防止多类库冲突
     var $ = window.Zepto || window.jQuery || $;
 
@@ -34,7 +29,7 @@
     // 样式
     var styles = {
         // 样式
-        text: '@-webkit-keyframes bb_animate-rotate{0%{-webkit-transform:rotate(0)}100%{-webkit-transform:rotate(360deg)}}@keyframes bb_animate-rotate{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@-webkit-keyframes bb_animate-load{0%{opacity:0.2}100%{opacity:1}}@keyframes bb_animate-load{0%{opacity:0.2}100%{opacity:1}}body{margin:0;padding:0}.bb_pull *{margin:0;padding:0;-webkit-box-sizing:content-box;box-sizing:content-box}.bb_pull{font:14px/1.42857143 "Helvetica Neue",Helvetica,Arial,sans-serif;color:#333;text-align:center;display:box;display:-webkit-box;display:-moz-box;-webkit-box-pack:center;-moz-box-pack:center;-webkit-box-align:center;-moz-box-align:center}.bb_pull-icon{display:inline-block;vertical-align:middle}.bb_pull-icon_loading{position:relative;width:10px;height:10px;border:2px solid #009def;border-right-color:transparent;border-radius:50%}.bb_pull-icon_loadFailed{position:relative;width:14px;height:14px}.bb_pull-icon_loadFailed:after,.bb_pull-icon_loadFailed:before{content:"";position:absolute;left:6px;top:0;width:2px;height:14px;background:#ee693b;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.bb_pull-icon_loadFailed:after{-webkit-transform:rotate(135deg);transform:rotate(135deg)}.bb_pull-icon_loadSuccess{display:inline-block;width:12px;height:6px;vertical-align:-3px;border:2px solid #13b418;border-width:0 0 2px 2px;-webkit-transform:translate(0,-5px) rotate(-45deg);transform:translate(0,-5px) rotate(-45deg)}.bb_pull-animate_rotate{-webkit-animation:bb_animate-rotate 1s linear 0s infinite;animation:bb_animate-rotate 1s linear 0s infinite}.bb_pull-icon_loading_ios{position:relative;width:24px;height:24px}.bb_pull-icon_loading_ios-line div{position:absolute;left:11px;top:0;width:2px;height:24px}.bb_pull-icon_loading_ios-line div:after,.bb_pull-icon_loading_ios-line div:before{content:"";display:block;height:30%;background:#777;border-radius:5px}.bb_pull-icon_loading_ios-line div:after{margin-top:10px}.bb_pull-icon_loading_ios-line div:nth-child(2){-webkit-transform:rotate(30deg);transform:rotate(30deg)}.bb_pull-icon_loading_ios-line div:nth-child(3){-webkit-transform:rotate(60deg);transform:rotate(60deg)}.bb_pull-icon_loading_ios-line div:nth-child(4){-webkit-transform:rotate(90deg);transform:rotate(90deg)}.bb_pull-icon_loading_ios-line div:nth-child(5){-webkit-transform:rotate(120deg);transform:rotate(120deg)}.bb_pull-icon_loading_ios-line div:nth-child(6){-webkit-transform:rotate(150deg);transform:rotate(150deg)}.bb_pull-icon_loading_ios-line div:nth-child(1):before{-webkit-animation:bb_animate-load 1.2s linear 0s infinite;animation:bb_animate-load 1.2s linear 0s infinite}.bb_pull-icon_loading_ios-line div:nth-child(2):before{-webkit-animation:bb_animate-load 1.2s linear .1s infinite;animation:bb_animate-load 1.2s linear .1s infinite}.bb_pull-icon_loading_ios-line div:nth-child(3):before{-webkit-animation:bb_animate-load 1.2s linear .2s infinite;animation:bb_animate-load 1.2s linear .2s infinite}.bb_pull-icon_loading_ios-line div:nth-child(4):before{-webkit-animation:bb_animate-load 1.2s linear .3s infinite;animation:bb_animate-load 1.2s linear .3s infinite}.bb_pull-icon_loading_ios-line div:nth-child(5):before{-webkit-animation:bb_animate-load 1.2s linear .4s infinite;animation:bb_animate-load 1.2s linear .4s infinite}.bb_pull-icon_loading_ios-line div:nth-child(6):before{-webkit-animation:bb_animate-load 1.2s linear .5s infinite;animation:bb_animate-load 1.2s linear .5s infinite}.bb_pull-icon_loading_ios-line div:nth-child(1):after{-webkit-animation:bb_animate-load 1.2s linear .6s infinite;animation:bb_animate-load 1.2s linear .6s infinite}.bb_pull-icon_loading_ios-line div:nth-child(2):after{-webkit-animation:bb_animate-load 1.2s linear .7s infinite;animation:bb_animate-load 1.2s linear .7s infinite}.bb_pull-icon_loading_ios-line div:nth-child(3):after{-webkit-animation:bb_animate-load 1.2s linear .8s infinite;animation:bb_animate-load 1.2s linear .8s infinite}.bb_pull-icon_loading_ios-line div:nth-child(4):after{-webkit-animation:bb_animate-load 1.2s linear .9s infinite;animation:bb_animate-load 1.2s linear .9s infinite}.bb_pull-icon_loading_ios-line div:nth-child(5):after{-webkit-animation:bb_animate-load 1.2s linear 1s infinite;animation:bb_animate-load 1.2s linear 1s infinite}.bb_pull-icon_loading_ios-line div:nth-child(6):after{-webkit-animation:bb_animate-load 1.2s linear 1.1s infinite;animation:bb_animate-load 1.2s linear 1.1s infinite}.bb_pull-inner{padding:5px}.bb_pull-icon_loading_ios{display:inline-block;vertical-align:middle;margin-right:-6px;-webkit-transform:scale(.75);transform:scale(.75)}.bb_pull-text{margin:0 5px;vertical-align:middle}',
+        text: '@-webkit-keyframes bb_animate-rotate{0%{-webkit-transform:rotate(0)}100%{-webkit-transform:rotate(360deg)}}@keyframes bb_animate-rotate{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@-webkit-keyframes bb_animate-load{0%{opacity:.2}100%{opacity:1}}@keyframes bb_animate-load{0%{opacity:.2}100%{opacity:1}}.bb_pull{text-align:center;display:box;display:-webkit-box;display:-moz-box;-webkit-box-pack:center;-moz-box-pack:center;-webkit-box-align:center;-moz-box-align:center}.bb_pull-inner *{margin:0;padding:0;-webkit-box-sizing:content-box;box-sizing:content-box}.bb_pull-inner{font:14px/1.42857143 "Helvetica Neue",Helvetica,Arial,sans-serif;color:#333}.bb_pull-icon{display:inline-block;vertical-align:middle}.bb_pull-icon_loading{position:relative;width:10px;height:10px;border:2px solid #009def;border-right-color:transparent;border-radius:50%}.bb_pull-icon_loadFailed{position:relative;width:14px;height:14px}.bb_pull-icon_loadFailed:after,.bb_pull-icon_loadFailed:before{content:"";position:absolute;left:6px;top:0;width:2px;height:14px;background:#ee693b;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.bb_pull-icon_loadFailed:after{-webkit-transform:rotate(135deg);transform:rotate(135deg)}.bb_pull-icon_loadSuccess{display:inline-block;width:12px;height:6px;vertical-align:-3px;border:2px solid #13b418;border-width:0 0 2px 2px;-webkit-transform:translate(0,-5px) rotate(-45deg);transform:translate(0,-5px) rotate(-45deg)}.bb_pull-animate_rotate{-webkit-animation:bb_animate-rotate 1s linear 0s infinite;animation:bb_animate-rotate 1s linear 0s infinite}.bb_pull-icon_loading_ios{position:relative;width:24px;height:24px}.bb_pull-icon_loading_ios-line div{position:absolute;left:11px;top:0;width:2px;height:24px}.bb_pull-icon_loading_ios-line div:after,.bb_pull-icon_loading_ios-line div:before{content:"";display:block;height:30%;background:#777;border-radius:5px}.bb_pull-icon_loading_ios-line div:after{margin-top:10px}.bb_pull-icon_loading_ios-line div:nth-child(2){-webkit-transform:rotate(30deg);transform:rotate(30deg)}.bb_pull-icon_loading_ios-line div:nth-child(3){-webkit-transform:rotate(60deg);transform:rotate(60deg)}.bb_pull-icon_loading_ios-line div:nth-child(4){-webkit-transform:rotate(90deg);transform:rotate(90deg)}.bb_pull-icon_loading_ios-line div:nth-child(5){-webkit-transform:rotate(120deg);transform:rotate(120deg)}.bb_pull-icon_loading_ios-line div:nth-child(6){-webkit-transform:rotate(150deg);transform:rotate(150deg)}.bb_pull-icon_loading_ios-line div:nth-child(1):before{-webkit-animation:bb_animate-load 1.2s linear 0s infinite;animation:bb_animate-load 1.2s linear 0s infinite}.bb_pull-icon_loading_ios-line div:nth-child(2):before{-webkit-animation:bb_animate-load 1.2s linear .1s infinite;animation:bb_animate-load 1.2s linear .1s infinite}.bb_pull-icon_loading_ios-line div:nth-child(3):before{-webkit-animation:bb_animate-load 1.2s linear .2s infinite;animation:bb_animate-load 1.2s linear .2s infinite}.bb_pull-icon_loading_ios-line div:nth-child(4):before{-webkit-animation:bb_animate-load 1.2s linear .3s infinite;animation:bb_animate-load 1.2s linear .3s infinite}.bb_pull-icon_loading_ios-line div:nth-child(5):before{-webkit-animation:bb_animate-load 1.2s linear .4s infinite;animation:bb_animate-load 1.2s linear .4s infinite}.bb_pull-icon_loading_ios-line div:nth-child(6):before{-webkit-animation:bb_animate-load 1.2s linear .5s infinite;animation:bb_animate-load 1.2s linear .5s infinite}.bb_pull-icon_loading_ios-line div:nth-child(1):after{-webkit-animation:bb_animate-load 1.2s linear .6s infinite;animation:bb_animate-load 1.2s linear .6s infinite}.bb_pull-icon_loading_ios-line div:nth-child(2):after{-webkit-animation:bb_animate-load 1.2s linear .7s infinite;animation:bb_animate-load 1.2s linear .7s infinite}.bb_pull-icon_loading_ios-line div:nth-child(3):after{-webkit-animation:bb_animate-load 1.2s linear .8s infinite;animation:bb_animate-load 1.2s linear .8s infinite}.bb_pull-icon_loading_ios-line div:nth-child(4):after{-webkit-animation:bb_animate-load 1.2s linear .9s infinite;animation:bb_animate-load 1.2s linear .9s infinite}.bb_pull-icon_loading_ios-line div:nth-child(5):after{-webkit-animation:bb_animate-load 1.2s linear 1s infinite;animation:bb_animate-load 1.2s linear 1s infinite}.bb_pull-icon_loading_ios-line div:nth-child(6):after{-webkit-animation:bb_animate-load 1.2s linear 1.1s infinite;animation:bb_animate-load 1.2s linear 1.1s infinite}.bb_pull-inner{padding:5px}.bb_pull-up .bb_pull-inner{padding:10px;}.bb_pull-icon_loading_ios{display:inline-block;vertical-align:middle;margin-right:-6px;-webkit-transform:scale(.75);transform:scale(.75)}.bb_pull-text{margin:0 5px;vertical-align:middle;color:#777}',
 
         // 样式标签id
         id: '_bb_pull_style',
@@ -75,9 +70,23 @@
 
     // 缓存模板
     var tpls = {
-        pullDown: '<div class="bb_pull" style="height:0; overflow: hidden;"><div class="bb_pull-inner"><i class="bb_pull-icon bb_pull-icon_loading"></i><span class="bb_pull-text"></span></div></div>',
-        pullUp: '<div class="bb_pull"><div class="bb_pull-inner"><div class="bb_pull-icon"></div><span class="bb_pull-text"></span></div></div>',
-        pullUpIconLoading: '<div class="bb_pull-icon_loading_ios"><div class="bb_pull-icon_loading_ios-line"><div></div><div></div><div></div><div></div><div></div><div></div></div></div>'
+        pullDownWrapper: '<div class="bb_pull bb_pull-down" style="height:0; overflow: hidden;"></div>',
+        pullUpWrapper: '<div class="bb_pull bb_pull-up"></div>'
+    };
+
+    // 默认dom
+    var defaultPullDownDom = {
+        start: '<div class="bb_pull-inner"><i class="bb_pull-icon bb_pull-icon_loading"></i><span class="bb_pull-text"><%=text%></span></div>',
+        drop: '<div class="bb_pull-inner"><i class="bb_pull-icon bb_pull-icon_loading"></i><span class="bb_pull-text"><%=text%></span></div>',
+        loading: '<div class="bb_pull-inner"><i class="bb_pull-icon bb_pull-icon_loading bb_pull-animate_rotate"></i><span class="bb_pull-text"><%=text%></span></div>',
+        success: '<div class="bb_pull-inner"><i class="bb_pull-icon bb_pull-icon_loadSuccess"></i><span class="bb_pull-text"><%=text%></span></div>',
+        failed: '<div class="bb_pull-inner"><i class="bb_pull-icon bb_pull-icon_loadFailed"></i><span class="bb_pull-text"><%=text%></span></div>'
+    };
+    var defaultPullUpDom = {
+        start: '<div class="bb_pull-inner"><span class="bb_pull-text"><%=text%></span></div>',
+        loading: '<div class="bb_pull-inner"><div class="bb_pull-icon"><div class="bb_pull-icon_loading_ios"><div class="bb_pull-icon_loading_ios-line"><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div><span class="bb_pull-text"><%=text%></span></div>',
+        failed: '<div class="bb_pull-inner"><span class="bb_pull-text"><%=text%></span></div>',
+        done: '<div class="bb_pull-inner"><span class="bb_pull-text"><%=text%></span></div>'
     };
 
     // 实例数，支持多个实例
@@ -86,7 +95,7 @@
     function Pull(element, options) {
 
         // 如果不支持touch事件，不进行任何操作
-        if(!utils.isSupportTouch){throw '设备不支持touch事件，无法进行操作';}
+        // if(!utils.isSupportTouch){throw '设备不支持touch事件，无法进行操作';}
 
         var self = this;
 
@@ -120,9 +129,10 @@
 
         self.opts = $.extend(true, {
             scrollArea: eles.$win, // 滚动区域
+            lock: false, // 锁定操作，锁定后默认隐藏下拉刷新和上拉加载dom，解锁需调用实例的unlock方法
             distance: 50, // 下拉距离多少触发刷新
             onPullDown: null, // 下拉刷新回调方法
-            pullDownText: {
+            pullDownText: { // 使用默认模板才使用 text
                 start: '下拉刷新',
                 drop: '释放刷新',
                 loading: '刷新中...',
@@ -132,11 +142,24 @@
             onPullUp: null, // 上拉刷新回调方法
             autoLoad: true, // 自动加载
             threshold: 100, // 上拉多少触发底部加载
-            pullUpText: {
+            pullUpText: { // 使用默认模板才使用 text
                 start: '上拉加载更多',
-                loading: '加载中...',
+                loading: '正在加载',
                 failed: '加载失败，点击重试',
                 done: '已全部加载'
+            },
+            pullDownDom: { // 自定义dom
+                // start: '下拉刷新',
+                // drop: '释放刷新',
+                // loading: '刷新中...',
+                // success: '刷新成功',
+                // failed: '刷新失败'
+            },
+            pullUpDom: { // 自定义dom
+                // start: '上拉加载',
+                // loading: '加载中...',
+                // failed: '加载失败，点击重试',
+                // done: '已全部加载'
             }
         }, options);
 
@@ -149,10 +172,20 @@
 
         // 加载样式
         styles.load();
+
+        // 生成模板
+        self.pullDownTpls = $.extend({}, genDefaultPullDownDom(self), self.opts.pullDownDom);
+        self.pullUpTpls = $.extend({}, genDefaultPullUpDom(self), self.opts.pullUpDom);
+
         // 下拉刷新dom
-        self.pullDownDom = $(tpls.pullDown);
+        self.pullDownDom = $(tpls.pullDownWrapper);
         // 上拉加载dom
-        self.pullUpDom = $(tpls.pullUp);
+        self.pullUpDom = $(tpls.pullUpWrapper);
+
+        // 默认锁定
+        if(self.opts.lock){
+            self.lock();
+        }
 
         // 内容高度
         self._scrollContentHeight = self.$element[0].scrollHeight;
@@ -164,6 +197,19 @@
         if(self.opts.onPullDown){
             updatePullDownDom(self, 'start');
             self.$element.before(self.pullDownDom);
+
+            // 绑定事件
+            self.$element.on('touchstart', function (e) {
+                fnTouches(e);
+                fnTouchstart(e, self);
+            }).on('touchmove', function (e) {
+                fnTouches(e);
+                fnTouchmove(e, self);
+            }).on('touchend', function (e) {
+                fnTouchend(self);
+            }).on('touchcancel', function (e) {
+                fnTouchcancel(self);
+            });
         }
 
         // 加载上拉加载dom
@@ -196,76 +242,64 @@
                     pullUpLoad.bind(self)();
                 }
             });
-        }
 
-        // 绑定事件
-        self.$element.on('touchstart', function (e) {
-            fnTouches(e);
-            fnTouchstart(e, self);
-        }).on('touchmove', function (e) {
-            fnTouches(e);
-            fnTouchmove(e, self);
-        }).on('touchend', function (e) {
-            fnTouchend(self);
-        }).on('touchcancel', function (e) {
-            fnTouchcancel(self);
-        });
-    }
-
-    // 如果文档高度不大于窗口高度，数据较少，自动加载下方数据
-    function fnAutoLoad(self){
-        if(self.opts.autoLoad && self.opts.onPullUp){
-            var scrollTop = self.opts.scrollArea.scrollTop();
-
-            if((self._scrollContentHeight - self.opts.threshold) <= (self._scrollWindowHeight + scrollTop)){
-                pullUpLoad.bind(self)();
-            }
+            // 底部加载失败点击事件
+            self.pullUpDom.on('click', function () {
+                var state = self.pullUpDom.attr('data-state');
+                if(state === 'failed'){
+                    pullUpLoad.bind(self)();
+                }
+            })
         }
     }
 
-    // 底部加载
-    function pullUpLoad() {
-        var self = this;
-        // 加载完成 或 上拉操作被锁定 不再处理
-        if(self.isDone || self.isLockDown || self.isLoading){return;}
+    // 生成默认下拉刷新dom
+    function genDefaultPullDownDom(self) {
+        var ret = {},
+            regReplaceText = '<%=text%>';
 
-        self.isLoading = true;
+            ret.start = defaultPullDownDom.start.replace(regReplaceText, self.opts.pullDownText.start);
+            ret.drop = defaultPullDownDom.drop.replace(regReplaceText, self.opts.pullDownText.drop);
+            ret.loading = defaultPullDownDom.loading.replace(regReplaceText, self.opts.pullDownText.loading);
+            ret.success = defaultPullDownDom.success.replace(regReplaceText, self.opts.pullDownText.success);
+            ret.failed = defaultPullDownDom.failed.replace(regReplaceText, self.opts.pullDownText.failed);
 
-        updatePullUpDom(self, 'loading');
-        self.opts.onPullUp();
+        return ret;
+    }
+
+    // 生成默认上拉加载dom
+    function genDefaultPullUpDom(self) {
+        var ret = {},
+            regReplaceText = '<%=text%>';
+
+            ret.start = defaultPullUpDom.start.replace(regReplaceText, self.opts.pullUpText.start);
+            ret.loading = defaultPullUpDom.loading.replace(regReplaceText, self.opts.pullUpText.loading);
+            ret.failed = defaultPullUpDom.failed.replace(regReplaceText, self.opts.pullUpText.failed);
+            ret.done = defaultPullUpDom.done.replace(regReplaceText, self.opts.pullUpText.done);
+
+        return ret;
     }
 
     // 更新底部加载dom
     function updatePullUpDom(self, state) {
 
-        var state = self.opts.pullUpText[state] ? state : 'start';
+        var state = self.pullUpTpls[state] ? state : 'start';
 
         // 防止dom一直渲染
         if(state === self.pullUpDom.attr('data-state')){return;}
 
-        var $text = self.pullUpDom.find('.bb_pull-text'),
-            $icon = self.pullUpDom.find('.bb_pull-icon');
+        self.pullUpDom.attr('data-state', state).html(self.pullUpTpls[state]);
+    }
 
-        $icon.html('');
-        $text.html(self.opts.pullUpText[state]);
+    // 更新下拉刷新dom
+    function updatePullDownDom(self, state) {
 
-        switch(state){
-            case 'loading':
-                $icon.html(tpls.pullUpIconLoading);
-                break;
-            case 'failed':
-                self.pullUpDom.one('click', pullUpLoad.bind(self));
-                break;
-            case 'done':
-                if(self.opts.pullUpText.done === ''){
-                    self.pullUpDom.hide();
-                }
-                break;
-            default:
-                break;
-        }
+        var state = self.pullDownTpls[state] ? state : 'start';
 
-        $text.html(self.opts.pullUpText[state]);
+        // 防止dom一直渲染
+        if(state === self.pullDownDom.attr('data-state')){return;}
+
+        self.pullDownDom.attr('data-state', state).html(self.pullDownTpls[state]);
     }
 
     // 更新滚动内容高度
@@ -280,6 +314,29 @@
         var self = self || this;
         self._scrollWindowHeight = self.opts.scrollArea.height();
         fnAutoLoad(self);
+    }
+
+    // 如果文档高度不大于窗口高度，数据较少，自动加载下方数据
+    function fnAutoLoad(self){
+        if(self.opts.autoLoad && self.opts.onPullUp){
+            var scrollTop = self.opts.scrollArea.scrollTop();
+
+            if((self._scrollContentHeight - self.opts.threshold) <= (self._scrollWindowHeight + scrollTop)){
+                pullUpLoad.bind(self)();
+            }
+        }
+    }
+
+    // 底部加载，调用需绑定当前作用域，bind(self)
+    function pullUpLoad() {
+        var self = this;
+        // 加载完成 或 上拉操作被锁定 不再处理
+        if(self.isDone || self.isLockDown || self.isLoading){return;}
+
+        self.isLoading = true;
+
+        updatePullUpDom(self, 'loading');
+        self.opts.onPullUp();
     }
 
     // touches
@@ -409,42 +466,6 @@
         });
     }
 
-    // 更新刷新dom
-    function updatePullDownDom(self, state) {
-
-        var state = self.opts.pullDownText[state] ? state : 'start';
-
-        // 防止dom一直渲染
-        if(state === self.pullDownDom.attr('data-state')){return;}
-
-        self.pullDownDom.attr('data-state', state);
-
-        var $text = self.pullDownDom.find('.bb_pull-text'),
-            $icon = self.pullDownDom.find('.bb_pull-icon');
-
-        $text.html(self.opts.pullDownText[state]);
-
-        switch(state){
-            // use default
-            // case 'start':
-            // case 'drop':
-            //     $icon.attr('class', 'bb_pull-icon bb_pull-icon_loading');
-            //     break;
-            case 'loading':
-                $icon.attr('class', 'bb_pull-icon bb_pull-icon_loading bb_pull-animate_rotate');
-                break;
-            case 'success':
-                $icon.attr('class', 'bb_pull-icon bb_pull-icon_loadSuccess');
-                break;
-            case 'failed':
-                $icon.attr('class', 'bb_pull-icon bb_pull-icon_loadFailed');
-                break;
-            default:
-                $icon.attr('class', 'bb_pull-icon bb_pull-icon_loading');
-                break;
-        }
-    }
-
     // 下拉刷新失败
     Pull.prototype.pullDownFailed = function () {
         var self = this;
@@ -477,6 +498,16 @@
         }, 500);
     }
 
+    // 快速重置下拉刷新状态，不更新scrollContentHeight
+    function fnPullDownQuickReset(self) {
+        var self = self || this;
+        if(self.pullDownDom.height() !== 0){
+            fnTransition(self.pullDownDom, 0);
+            self.pullDownDom.height(0);
+            updatePullDownDom(self, 'start');
+        }
+    }
+
     // 上拉加载失败
     Pull.prototype.pullUpFailed = function () {
         var self = this;
@@ -501,18 +532,27 @@
         updateScrollContentHeight(self);
     }
 
-    // 锁定操作
+    // 锁定操作，重置上拉和下拉状态
     Pull.prototype.lock = function (direction) {
         var self = this;
         if(direction && (direction === 'up' || direction === 'down')){
             if(direction === 'up'){
                 self.isLockUp = true;
+                fnPullDownQuickReset(self);
+                self.pullDownDom.hide();
+
             }else{
                 self.isLockDown = true;
+                updatePullUpDom(self, 'start');
+                self.pullUpDom.hide();
             }
         }else{
             self.isLockDown = true;
             self.isLockUp = true;
+            updatePullUpDom(self, 'start');
+            fnPullDownQuickReset(self);
+            self.pullDownDom.hide();
+            self.pullUpDom.hide();
         }
     }
 
@@ -522,12 +562,18 @@
         if(direction && (direction === 'up' || direction === 'down')){
             if(direction === 'up'){
                 self.isLockUp = false;
+                self.pullDownDom.show();
             }else{
                 self.isLockDown = false;
+                self.pullUpDom.show();
+                updateScrollContentHeight(self);
             }
         }else{
             self.isLockDown = false;
             self.isLockUp = false;
+            self.pullDownDom.show();
+            self.pullUpDom.show();
+            updateScrollContentHeight(self);
         }
     }
 
@@ -537,6 +583,7 @@
         if(instances <= 0){
             styles.remove();
         }
+        self.lock();
         self.pullDownDom && self.pullDownDom.remove();
         self.pullUpDom && self.pullUpDom.remove();
     }

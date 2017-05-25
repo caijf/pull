@@ -1,0 +1,18 @@
+body{-webkit-overflow-scrolling: touch;}
+
+/*icon*/
+[class^=icon-]{display:inline-block}
+.icon-back{width:44px;height:44px;line-height:44px}
+.icon-back::before{content:"";display:inline-block;width:10px;height:10px;vertical-align:middle;border-left:2px solid #fff;border-bottom:2px solid #fff;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-box-sizing:border-box;box-sizing:border-box}
+
+/*global*/
+.fl{ float: left; }
+
+/*example*/
+.header{ position: relative; padding: 0 88px; height: 44px;width: 100%; line-height: 44px; text-align: center; color:#fff; font-size: 16px; font-weight: bold; background: #009def; z-index: 1000;}
+.header .icon-back{ position: absolute; left: 0; top: 0; }
+
+.list-group{ margin-bottom: 0; }
+
+.tab-content .tab-panel{ display: none; }
+

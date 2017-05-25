@@ -1,5 +1,5 @@
 {
-  "name": "pull",
+  "name": "pull-pro",
   "version": "1.0.0",
   "description": "",
   "main": "pull.js",
@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/caijf/pull/issues"
   },
-  "homepage": "https://github.com/caijf/pull#readme"
+  "homepage": "https://github.com/caijf/pull#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "pump": "^1.0.2"
+  }
 }
