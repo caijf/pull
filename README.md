@@ -103,6 +103,10 @@ or `npm`
 
 显示下拉刷新成功状态
 
+#### triggerPullDown()
+
+手动触发下拉刷新，从而触发 `onPullDown` 回调方法
+
 #### pullUpFailed()
 
 显示上拉加载失败状态
@@ -114,6 +118,18 @@ or `npm`
 #### pullUpDone()
 
 上拉加载完成，显示完成状态。后面不在触发上拉加载
+
+#### resetPullUpDone()
+
+重置上拉加载完成状态
+
+#### triggerPullUp()
+
+手动触发上拉加载，从而触发 `onPullUp` 回调方法
+
+#### updateScrollAreaHeight()
+
+更新滚动区域高度
 
 #### lock(direction)
 
@@ -130,6 +146,11 @@ direction 可选参数 'up' or 'down'，解锁方向，如不传默认全部解�
 
 ## 更新日志
 
+- 20170526
+	- New 新增`resetPullUpDone`方法，重置上拉加载完成状态。考虑到页面如有筛选功能，重置数据后仍需支持上拉加载
+	- New 新增`updateScrollAreaHeight`方法，滚动区域如有延迟加载的内容，可在加载后更新滚动区域高度
+	- New 新增`triggerPullDown`、`triggerPullUp`方法，支持手动触发刷新和加载显示状态，从而触发 `onPullDown`、`onPullUp`回调方法
+	- Update 优化默认模板字体
 - 20170525
 	- Update 支持配置 `lock`
 	- Update 支持自定义`pullDownDom`、`pullUpDom`
