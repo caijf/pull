@@ -13,7 +13,8 @@
 
 ## 示例
 
-查看 `examples` 文件
+[点击查看](http://www.caijinfeng.com/temp/pull/examples/index.html)
+
 
 - 单独使用下拉刷新
 - 单独使用上拉加载
