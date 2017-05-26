@@ -113,7 +113,7 @@
         self.__timerFixSlideOutScreen = null; // 定时器，修复滑出屏幕导致下拉刷新显示错误问题
 
         // 初始化
-        this.init(options);
+        self.init(options);
     }
 
     Pull.prototype.init = function (options) {
