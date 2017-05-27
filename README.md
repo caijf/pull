@@ -67,7 +67,7 @@ or `npm`
 		
 		autoLoad: boolean, // 自动加载，加载完成立即判断是否触发加载 默认 true
 		threshold: number, // 滚动至底部多少距离触发onPullUp。默认 100，单位px
-		
+		onPullUp: function, // 上拉加载回调方法，如果不存在该方法，则不加载上拉dom
 		// 使用默认模板，只需配置text即可，如果同时配置了pullUpDom，以pullUpDom为主
 		pullUpText: {
 			start: string, // 上拉加载前的文本。默认 上拉加载更多
