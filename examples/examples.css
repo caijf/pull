@@ -9,7 +9,7 @@ body{-webkit-overflow-scrolling: touch;}
 .fl{ float: left; }
 
 /*example*/
-.header{ position: relative; padding: 0 88px; height: 44px;width: 100%; line-height: 44px; text-align: center; color:#fff; font-size: 16px; font-weight: bold; background: #009def; z-index: 1000;}
+.header{ position: relative; padding: 0 44px; height: 44px;width: 100%; line-height: 44px; text-align: center; color:#fff; font-size: 14px; font-weight: bold; background: #009def; z-index: 1000;}
 .header .icon-back{ position: absolute; left: 0; top: 0; }
 
 .list-group{ margin-bottom: 0; }
