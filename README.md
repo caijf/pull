@@ -13,16 +13,18 @@
 
 ## 示例
 
-[点击查看](http://www.caijinfeng.com/temp/pull/examples/index.html)
+[点击查看Demo](http://www.caijinfeng.com/temp/pull/examples/index.html)
 
 
-- 单独使用下拉刷新
-- 单独使用上拉加载
-- require 接入方式
-- 自定义下拉刷新dom
-- 固定头部，局部滚动区域
-- tab错误用法-一个实例
-- tab-多个实例
+- 下拉刷新
+- 上拉加载
+- 上拉加载 底部点击加载
+- 下拉刷新+上拉加载
+- 下拉刷新+上拉加载 使用requirejs
+- 下拉刷新+上拉加载 自定义dom
+- 下拉刷新+上拉加载 固定头部
+- 下拉刷新+上拉加载 tab一个实例
+- 下拉刷新+上拉加载 tab多个实例
 
 ## 使用方式
 
