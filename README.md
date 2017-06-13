@@ -147,6 +147,9 @@ direction 可选参数 'up' or 'down'，解锁方向，如不传默认全部解�
 
 ## 更新日志
 
+- 20170613
+	- Fix 修复配置项 `autoLoad` 无效问题
+	- Change 如果配置`autoLoad: false`，上拉加载仅支持点击加载。注意配置 `pullUpText`
 - 20170526
 	- New 新增`resetPullUpDone`方法，重置上拉加载完成状态。考虑到页面如有筛选功能，重置数据后仍需支持上拉加载
 	- New 新增`updateScrollAreaHeight`方法，滚动区域如有延迟加载的内容，可在加载后更新滚动区域高度

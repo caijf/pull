@@ -11,7 +11,7 @@
         <a href="javascript: history.back();" class="fl">
             <span class="icon-back"></span>
         </a>
-        上拉加载
+        上拉加载 底部点击加载
     </div>
     <div class="main">
         <ul class="list-group" id="listWrapper">
@@ -42,7 +42,7 @@
         var $listWrapper = $('#listWrapper');
 
         var pullInstance = new Pull($listWrapper, {
-            // autoLoad: true, // 自动加载，加载完成立即判断是否触发加载 默认 true
+            autoLoad: false, // 自动加载，加载完成立即判断是否触发加载 默认 true
             // threshold: 100, // 滚动至底部多少距离触发onPullUp。默认 100，单位px
             onPullUp: function () {
                 setTimeout(function () {
@@ -54,12 +54,12 @@
             },
 
             // 使用默认模板，只需配置text即可，如果同时配置了pullUpDom，以pullUpDom为主
-            // pullUpText: {
-            //     start: '上拉就加载', // 上拉加载前的文本。默认 上拉加载更多
-            //     loading: '加载中', // 上拉加载中文本。默认 正在加载
-            //     failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
-            //     done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
-            // },
+            pullUpText: {
+                start: '点击加载更多', // 上拉加载前的文本。默认 上拉加载更多
+                // loading: '加载中', // 上拉加载中文本。默认 正在加载
+                // failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
+                // done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
+            },
 
             // 自定义上拉加载dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
             // pullUpDom: {

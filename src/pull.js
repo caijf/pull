@@ -236,15 +236,19 @@
                 var scrollTop = self.opts.scrollArea.scrollTop();
 
                 // 滚动页面触发加载数据
-                if((self._scrollContentHeight - self.opts.threshold) <= (self._scrollAreaHeight + scrollTop)){
+                if((self._scrollContentHeight - self.opts.threshold) <= (self._scrollAreaHeight + scrollTop) && self.opts.autoLoad){
                     self.triggerPullUp();
                 }
             });
 
-            // 底部加载失败点击事件
+            // 底部加载点击事件
             self.pullUpDom.on('click', function () {
                 var state = self.pullUpDom.attr('data-state');
-                if(state === 'failed'){
+
+                // 加载完成或加载中，无点击行为
+                if(state === 'done' || state === 'loading'){
+                    return;
+                }else if(state === 'failed' || !self.opts.autoLoad){ // 加载失败 或 不自动加载，点击触发加载行为
                     self.triggerPullUp();
                 }
             })

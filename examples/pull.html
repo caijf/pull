@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
-    <title>PullJS Examples only-pullup</title>
+    <title>PullJS Examples requirejs usage</title>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="examples.css"></head>
 <body>
@@ -11,9 +11,12 @@
         <a href="javascript: history.back();" class="fl">
             <span class="icon-back"></span>
         </a>
-        上拉加载
+        下拉刷新+上拉加载
     </div>
-    <div class="main">
+    <div class="main main-fixed">
+        <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
+    <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
+    -->
         <ul class="list-group" id="listWrapper">
             <li class="list-group-item">item 1</li>
             <li class="list-group-item">item 2</li>
@@ -34,15 +37,16 @@
         <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
     <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
     -->
-</div>
+    </div>
 
-<script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
-<script src="../dist/pull.min.js"></script>
-<script>
+    <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
+    <script src="../dist/pull.min.js"></script>
+    <script>
+
         var $listWrapper = $('#listWrapper');
 
         var pullInstance = new Pull($listWrapper, {
-            // autoLoad: true, // 自动加载，加载完成立即判断是否触发加载 默认 true
+            // autoLoad: false, // 自动加载，加载完成立即判断是否触发加载 默认 true
             // threshold: 100, // 滚动至底部多少距离触发onPullUp。默认 100，单位px
             onPullUp: function () {
                 setTimeout(function () {
@@ -55,10 +59,10 @@
 
             // 使用默认模板，只需配置text即可，如果同时配置了pullUpDom，以pullUpDom为主
             // pullUpText: {
-            //     start: '上拉就加载', // 上拉加载前的文本。默认 上拉加载更多
-            //     loading: '加载中', // 上拉加载中文本。默认 正在加载
-            //     failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
-            //     done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
+            //     start: '点击加载更多', // 上拉加载前的文本。默认 上拉加载更多
+            //     // loading: '加载中', // 上拉加载中文本。默认 正在加载
+            //     // failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
+            //     // done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
             // },
 
             // 自定义上拉加载dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
@@ -68,13 +72,68 @@
             //     failed: '<div style="color:red; height: 50px; line-height: 50px;">失败了，点我再试试</div>', // 上拉加载失败的html
             //     done: '<div style="color:green; height: 50px; line-height: 50px;">加载完成，不会再加载了</div>', // 加载完成的html
             // },
+
+            // scrollArea: window, // 滚动区域的dom对象或选择器。默认 window
+            // distance: 50, // 下拉多少距离触发onPullDown。默认 50，单位px
+
+            // 下拉刷新回调方法，如果不存在该方法，则不加载下拉dom
+            onPullDown: function () {
+                setTimeout(function () {
+                    Math.round(Math.random() + 0.2) ? handlePullDownSuccess() : handlePullDownFailed();
+                }, 1000);
+            },
+
+            // // 使用默认模板，只需配置text即可，如果同时配置了pullDownDom，以pullDownDom为主
+            // pullDownText: {
+            //     start: '下拉刷新吗？？？', // 下拉刷新前的文本。默认 下拉刷新
+            //     drop: '放开我，我要刷新', // 下拉刷新触发提示文本。默认 释放刷新
+            //     loading: '使出吃奶的力气刷新。。。', // 下拉刷新中文本。默认 刷新中...
+            //     success: '成功了', // 下拉刷新成功文本。默认 刷新成功
+            //     failed: '失败再试试' // 下拉刷新失败文本。默认 刷新失败
+            // },
+
+            // // 自定义下拉刷新dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
+            // pullDownDom: {
+            //     start: '<div style="color:gray;">下拉刷新吗？？？</div>', // 下拉刷新前的html
+            //     drop: '<div style="color:blue;">放开我，我要刷新</div>', // 下拉刷新触发提示的html
+            //     loading: '<div style="color:black;">使出吃奶的力气刷新。。。</div>', // 下拉刷新中的html
+            //     success: '<div style="color:green;">成功了</div>', // 下拉刷新成功的html
+            //     failed: '<div style="color:red;">失败再试试</div>', // 下拉刷新失败的html
+            // },
         });
 
-        var pullUpTotal = 0;
+        var pullDownTotal = 0,
+            pullUpTotal = 0;
+
+        // 创建li dom
+        function createList(str) {
+            return '<li class="list-group-item">'+ str +'</li>';
+        }
+
+        // 处理下拉刷新成功
+        function handlePullDownSuccess() {
+
+            var count = Math.round(Math.random()*10);
+            var htmlArr = [];
+
+            while(count){
+                count--;
+                htmlArr.unshift(createList('item pullDown ' + pullDownTotal));
+                pullDownTotal++;
+            }
+
+            $listWrapper.prepend($(htmlArr.join('')));
+
+            pullInstance.pullDownSuccess();
+        }
+
+        // 处理下拉刷新失败
+        function handlePullDownFailed() {
+            pullInstance.pullDownFailed();
+        }
 
         // 处理上拉加载成功
         function handlePullUpSuccess() {
-
             var count = Math.round(Math.random()*10),
                 htmlArr = [];
 
@@ -97,11 +156,6 @@
         // 处理上拉加载失败
         function handlePullUpFailed() {
             pullInstance.pullUpFailed();
-        }
-
-        // 创建li dom
-        function createList(str) {
-            return '<li class="list-group-item">'+ str +'</li>';
         }
     </script>
 </body>

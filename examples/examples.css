@@ -16,3 +16,13 @@ body{-webkit-overflow-scrolling: touch;}
 
 .tab-content .tab-panel{ display: none; }
 
+.main-fixed{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+}
+
+.header + .main-fixed{ top: 44px; }
