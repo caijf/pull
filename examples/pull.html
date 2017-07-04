@@ -13,7 +13,7 @@
         </a>
         下拉刷新+上拉加载
     </div>
-    <div class="main main-fixed">
+    <div class="main main-fixed" id="main">
         <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
     <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
     -->
@@ -46,6 +46,7 @@
         var $listWrapper = $('#listWrapper');
 
         var pullInstance = new Pull($listWrapper, {
+            scrollArea: $('#main'),
             // autoLoad: false, // 自动加载，加载完成立即判断是否触发加载 默认 true
             // threshold: 100, // 滚动至底部多少距离触发onPullUp。默认 100，单位px
             onPullUp: function () {
