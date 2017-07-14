@@ -149,6 +149,9 @@ direction 可选参数 'up' or 'down'，解锁方向，如不传默认全部解�
 
 ## 更新日志
 
+- 20170714
+	- Fix 修复滚动置底，上拉加载失败无限触发的问题
+	- New 新增`updateScrollContentHeight`方法，手动更新滚动内容高度
 - 20170613
 	- Fix 修复配置项 `autoLoad` 无效问题
 	- Change 如果配置`autoLoad: false`，上拉加载仅支持点击加载。注意配置 `pullUpText`

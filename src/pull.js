@@ -234,9 +234,10 @@
                 if(self.isLoading || self.isLockDown || self.isDone){return;}
 
                 var scrollTop = self.opts.scrollArea.scrollTop();
+                var pullUpState = self.pullUpDom.attr('data-state');
 
                 // 滚动页面触发加载数据
-                if((self._scrollContentHeight - self.opts.threshold) <= (self._scrollAreaHeight + scrollTop) && self.opts.autoLoad){
+                if((self._scrollContentHeight - self.opts.threshold) <= (self._scrollAreaHeight + scrollTop) && self.opts.autoLoad && pullUpState !== 'failed'){
                     self.triggerPullUp();
                 }
             });
@@ -305,8 +306,8 @@
     }
 
     // 更新滚动内容高度
-    function updateScrollContentHeight(self) {
-        var self = self || this;
+    Pull.prototype.updateScrollContentHeight = function() {
+        var self = this;
         self._scrollContentHeight = self.$element[0].scrollHeight;
         fnAutoLoad(self);
     }
@@ -488,7 +489,7 @@
 
             setTimeout(function () {
                 self.isLoading = false;
-                updateScrollContentHeight(self);
+                self.updateScrollContentHeight();
                 updatePullDownDom(self, 'start');
             }, 300);
         }, 500);
@@ -516,7 +517,7 @@
         var self = this;
         self.isLoading = false;
         updatePullUpDom(self, 'start');
-        updateScrollContentHeight(self);
+        self.updateScrollContentHeight();
     }
 
     // 上拉加载完成
@@ -525,7 +526,7 @@
         self.isLoading = false;
         self.isDone = true;
         updatePullUpDom(self, 'done');
-        updateScrollContentHeight(self);
+        self.updateScrollContentHeight();
     }
 
     // 重置上拉加载完成状态
@@ -579,14 +580,14 @@
             }else{
                 self.isLockDown = false;
                 self.pullUpDom.show();
-                updateScrollContentHeight(self);
+                self.updateScrollContentHeight();
             }
         }else{
             self.isLockDown = false;
             self.isLockUp = false;
             self.pullDownDom.show();
             self.pullUpDom.show();
-            updateScrollContentHeight(self);
+            self.updateScrollContentHeight();
         }
     }
 
