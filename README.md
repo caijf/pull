@@ -94,7 +94,7 @@ instance.unlock(direction) | direction 可选参数 'up' or 'down'，解锁方�
 
 ## 示例
 
-[点击查看Demo](http://www.caijinfeng.com/temp/pull/examples/index.html)
+[点击查看Demo](http://www.caijinfeng.com/temp/pull2/examples/index.html)
 
 ## 更新日志
 
