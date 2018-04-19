@@ -33,22 +33,27 @@
             <li class="list-group-item">item 13</li>
             <li class="list-group-item">item 14</li>
             <li class="list-group-item">item 15</li>
+            <li class="list-group-item">item 16</li>
+            <li class="list-group-item">item 17</li>
+            <li class="list-group-item">item 18</li>
+            <li class="list-group-item">item 19</li>
+            <li class="list-group-item">item 20</li>
         </ul>
         <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
     <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
     -->
     </div>
-
-    <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
     <script src="../dist/pull.min.js"></script>
     <script>
 
-        var $listWrapper = $('#listWrapper');
+        var listWrapper = document.getElementById('listWrapper');
 
-        var pullInstance = new Pull($listWrapper, {
-            scrollArea: $('#main'),
+        var pullInstance = new Pull('listWrapper', {
+            scrollAreaId: 'main', // 滚动区域的id。
             // autoLoad: false, // 自动加载，加载完成立即判断是否触发加载 默认 true
             // threshold: 100, // 滚动至底部多少距离触发onPullUp。默认 100，单位px
+            // distance: 50, // 下拉多少距离触发onPullDown。默认 50，单位px
+
             onPullUp: function () {
                 setTimeout(function () {
                     // pullInstance.pullUpSuccess();
@@ -59,12 +64,12 @@
             },
 
             // 使用默认模板，只需配置text即可，如果同时配置了pullUpDom，以pullUpDom为主
-            // pullUpText: {
-            //     start: '点击加载更多', // 上拉加载前的文本。默认 上拉加载更多
-            //     // loading: '加载中', // 上拉加载中文本。默认 正在加载
-            //     // failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
-            //     // done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
-            // },
+            pullUpText: {
+                start: '点击加载更多', // 上拉加载前的文本。默认 上拉加载更多
+                // loading: '加载中', // 上拉加载中文本。默认 正在加载
+                // failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
+                // done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
+            },
 
             // 自定义上拉加载dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
             // pullUpDom: {
@@ -73,9 +78,6 @@
             //     failed: '<div style="color:red; height: 50px; line-height: 50px;">失败了，点我再试试</div>', // 上拉加载失败的html
             //     done: '<div style="color:green; height: 50px; line-height: 50px;">加载完成，不会再加载了</div>', // 加载完成的html
             // },
-
-            // scrollArea: window, // 滚动区域的dom对象或选择器。默认 window
-            // distance: 50, // 下拉多少距离触发onPullDown。默认 50，单位px
 
             // 下拉刷新回调方法，如果不存在该方法，则不加载下拉dom
             onPullDown: function () {
@@ -106,24 +108,25 @@
         var pullDownTotal = 0,
             pullUpTotal = 0;
 
-        // 创建li dom
-        function createList(str) {
-            return '<li class="list-group-item">'+ str +'</li>';
-        }
-
         // 处理下拉刷新成功
         function handlePullDownSuccess() {
 
             var count = Math.round(Math.random()*10);
-            var htmlArr = [];
 
-            while(count){
-                count--;
-                htmlArr.unshift(createList('item pullDown ' + pullDownTotal));
+            var oFragment = document.createDocumentFragment();
+
+            for (var i = 0; i < count; i++) {
                 pullDownTotal++;
+
+                var li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.innerHTML = 'item pullDown ' + pullDownTotal;
+
+                // oFragment.prepend(li);
+                oFragment.insertBefore(li, oFragment.firstElementChild);
             }
 
-            $listWrapper.prepend($(htmlArr.join('')));
+            listWrapper.insertBefore(oFragment, listWrapper.getElementsByTagName('li')[0]);
 
             pullInstance.pullDownSuccess();
         }
@@ -135,16 +138,22 @@
 
         // 处理上拉加载成功
         function handlePullUpSuccess() {
-            var count = Math.round(Math.random()*10),
-                htmlArr = [];
 
-            while(count){
-                count--;
-                htmlArr.push(createList('item pullUp ' + pullUpTotal));
+            var count = Math.round(Math.random()*10);
+
+            var oFragment = document.createDocumentFragment();
+
+            for (var i = 0; i < count; i++) {
                 pullUpTotal++;
+
+                var li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.innerHTML = 'item pullUp ' + pullUpTotal;
+
+                oFragment.appendChild(li);
             }
 
-            $listWrapper.append(htmlArr.join(''));
+            listWrapper.appendChild(oFragment);
 
             // 超过20条即加载完成
             if(pullUpTotal >= 20){
@@ -158,6 +167,8 @@
         function handlePullUpFailed() {
             pullInstance.pullUpFailed();
         }
+
+        // pullInstance.destroy()
     </script>
 </body>
 </html>

@@ -67,18 +67,22 @@
         <li class="list-group-item">item 13</li>
         <li class="list-group-item">item 14</li>
         <li class="list-group-item">item 15</li>
+        <li class="list-group-item">item 16</li>
+        <li class="list-group-item">item 17</li>
+        <li class="list-group-item">item 18</li>
+        <li class="list-group-item">item 19</li>
+        <li class="list-group-item">item 20</li>
     </ul>
     <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
 <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
 -->
 </div>
 
-<script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
 <script src="../dist/pull.min.js"></script>
 <script>
-        var $listWrapper = $('#listWrapper');
+        var listWrapper = document.getElementById('listWrapper');
 
-        var pullInstance = new Pull($listWrapper, {
+        var pullInstance = new Pull('listWrapper', {
             distance: 60,
             onPullDown: function () {
                 setTimeout(function () {
@@ -88,11 +92,11 @@
 
             // 自定义下拉刷新dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
             pullDownDom: {
-                start: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loading"></i><span>下拉可刷新</span></p></div></div>', // 下拉刷新前的html
-                drop: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loading"></i><span>释放可刷新</span></p></div></div>', // 下拉刷新触发提示的html
-                loading: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loading i-loading2"></i><span>刷新中...</span></p></div></div>', // 下拉刷新中的html
-                success: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loadingSucc"></i><span>刷新成功</span></p></div></div>', // 下拉刷新成功的html
-                failed: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loadingFailed"></i><span>未加载成功，稍后再试吧</span></p></div></div>', // 下拉刷新失败的html
+                start: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loading"></i><span>--下拉可刷新--</span></p></div></div>', // 下拉刷新前的html
+                drop: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loading"></i><span>--释放可刷新--</span></p></div></div>', // 下拉刷新触发提示的html
+                loading: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loading i-loading2"></i><span>--刷新中...--</span></p></div></div>', // 下拉刷新中的html
+                success: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loadingSucc"></i><span>--刷新成功--</span></p></div></div>', // 下拉刷新成功的html
+                failed: '<div class="loadRefresh-over-box"><div class="slogan"><p class="refresh_slogan"></p><p><i class="i-loadingFailed"></i><span>--未加载成功，稍后再试吧--</span></p></div></div>', // 下拉刷新失败的html
             },
 
             onPullUp: function () {
@@ -101,31 +105,39 @@
 
                 }, 2000);
             },
-
+            
+            // 自定义上拉加载dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
+            pullUpDom: {
+                start: '<div style="color:gray; height: 50px; line-height: 50px;">---上拉就加载---</div>', // 上拉加载前的html
+                loading: '<div style="color:black; height: 50px; line-height: 50px;">---加载中---</div>', // 上拉加载中的html
+                failed: '<div style="color:red; height: 50px; line-height: 50px;">---失败了，点我再试试---</div>', // 上拉加载失败的html
+                done: '<div style="color:green; height: 50px; line-height: 50px;">---加载完成，不会再加载了---</div>', // 加载完成的html
+            },
 
         });
 
         var pullDownTotal = 0,
             pullUpTotal = 0;
 
-        // 创建li dom
-        function createList(str) {
-            return '<li class="list-group-item">'+ str +'</li>';
-        }
-
         // 处理下拉刷新成功
         function handlePullDownSuccess() {
 
             var count = Math.round(Math.random()*10);
-            var htmlArr = [];
 
-            while(count){
-                count--;
-                htmlArr.unshift(createList('item pullDown ' + pullDownTotal));
+            var oFragment = document.createDocumentFragment();
+
+            for (var i = 0; i < count; i++) {
                 pullDownTotal++;
+
+                var li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.innerHTML = 'item pullDown ' + pullDownTotal;
+
+                // oFragment.prepend(li);
+                oFragment.insertBefore(li, oFragment.firstElementChild);
             }
 
-            $listWrapper.prepend($(htmlArr.join('')));
+            listWrapper.insertBefore(oFragment, listWrapper.getElementsByTagName('li')[0]);
 
             pullInstance.pullDownSuccess();
         }
@@ -137,17 +149,24 @@
 
         // 处理上拉加载成功
         function handlePullUpSuccess() {
-            var count = Math.round(Math.random()*10),
-                htmlArr = [];
 
-            while(count){
-                count--;
-                htmlArr.push(createList('item pullUp ' + pullUpTotal));
+            var count = Math.round(Math.random()*10);
+
+            var oFragment = document.createDocumentFragment();
+
+            for (var i = 0; i < count; i++) {
                 pullUpTotal++;
+
+                var li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.innerHTML = 'item pullUp ' + pullUpTotal;
+
+                oFragment.appendChild(li);
             }
 
-            $listWrapper.append(htmlArr.join(''));
+            listWrapper.appendChild(oFragment);
 
+            // 超过20条即加载完成
             if(pullUpTotal >= 20){
                 pullInstance.pullUpDone();
             }else{
@@ -159,6 +178,8 @@
         function handlePullUpFailed() {
             pullInstance.pullUpFailed();
         }
+
+        // pullInstance.destroy()
     </script>
 </body>
 </html>

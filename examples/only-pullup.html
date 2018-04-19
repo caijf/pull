@@ -36,55 +36,43 @@
     -->
 </div>
 
-<script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
 <script src="../dist/pull.min.js"></script>
 <script>
-        var $listWrapper = $('#listWrapper');
+        var listWrapper = document.getElementById('listWrapper');
 
-        var pullInstance = new Pull($listWrapper, {
-            // autoLoad: true, // 自动加载，加载完成立即判断是否触发加载 默认 true
-            // threshold: 100, // 滚动至底部多少距离触发onPullUp。默认 100，单位px
+        var pullInstance = new Pull('listWrapper', {
             onPullUp: function () {
                 setTimeout(function () {
-                    // pullInstance.pullUpSuccess();
-                    // pullInstance.pullUpFailed();
-                    // pullInstance.pullUpDone();
                     Math.round(Math.random() + 0.2) ? handlePullUpSuccess() : handlePullUpFailed();
                 }, 1000);
-            },
-
-            // 使用默认模板，只需配置text即可，如果同时配置了pullUpDom，以pullUpDom为主
-            // pullUpText: {
-            //     start: '上拉就加载', // 上拉加载前的文本。默认 上拉加载更多
-            //     loading: '加载中', // 上拉加载中文本。默认 正在加载
-            //     failed: '失败了，点我再试试', // 上拉加载失败文本，加载失败时，点击触发onPullUp重新加载。默认 加载失败，点击重试
-            //     done: '加载完成，不会再加载了' // 加载完成文本。默认 已全部加载
-            // },
-
-            // 自定义上拉加载dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
-            // pullUpDom: {
-            //     start: '<div style="color:gray; height: 50px; line-height: 50px;">上拉就加载</div>', // 上拉加载前的html
-            //     loading: '<div style="color:black; height: 50px; line-height: 50px;">加载中</div>', // 上拉加载中的html
-            //     failed: '<div style="color:red; height: 50px; line-height: 50px;">失败了，点我再试试</div>', // 上拉加载失败的html
-            //     done: '<div style="color:green; height: 50px; line-height: 50px;">加载完成，不会再加载了</div>', // 加载完成的html
-            // },
+            }
         });
 
         var pullUpTotal = 0;
 
+        // 处理下拉刷新失败
+        function handlePullDownFailed() {
+            pullInstance.pullDownFailed();
+        }
+
         // 处理上拉加载成功
         function handlePullUpSuccess() {
 
-            var count = Math.round(Math.random()*10),
-                htmlArr = [];
+            var count = Math.round(Math.random()*10);
 
-            while(count){
-                count--;
-                htmlArr.push(createList('item pullUp ' + pullUpTotal));
+            var oFragment = document.createDocumentFragment();
+
+            for (var i = 0; i < count; i++) {
                 pullUpTotal++;
+
+                var li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.innerHTML = 'item pullUp ' + pullUpTotal;
+
+                oFragment.appendChild(li);
             }
 
-            $listWrapper.append(htmlArr.join(''));
+            listWrapper.appendChild(oFragment);
 
             // 超过20条即加载完成
             if(pullUpTotal >= 20){
@@ -97,11 +85,6 @@
         // 处理上拉加载失败
         function handlePullUpFailed() {
             pullInstance.pullUpFailed();
-        }
-
-        // 创建li dom
-        function createList(str) {
-            return '<li class="list-group-item">'+ str +'</li>';
         }
     </script>
 </body>

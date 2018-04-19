@@ -33,42 +33,25 @@
         <li class="list-group-item">item 13</li>
         <li class="list-group-item">item 14</li>
         <li class="list-group-item">item 15</li>
+        <li class="list-group-item">item 16</li>
+        <li class="list-group-item">item 17</li>
+        <li class="list-group-item">item 18</li>
+        <li class="list-group-item">item 19</li>
+        <li class="list-group-item">item 20</li>
     </ul>
 </div>
 
-<script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
 <script src="../dist/pull.min.js"></script>
 <script>
-        var $listWrapper = $('#listWrapper');
+        var listWrapper = document.getElementById('listWrapper');
 
-        var pullInstance = new Pull($listWrapper, {
-            // scrollArea: window, // 滚动区域的dom对象或选择器。默认 window
-            // distance: 50, // 下拉多少距离触发onPullDown。默认 50，单位px
-
+        var pullInstance = new Pull('listWrapper', {
             // 下拉刷新回调方法，如果不存在该方法，则不加载下拉dom
             onPullDown: function () {
                 setTimeout(function () {
                     Math.round(Math.random() + 0.2) ? handlePullDownSuccess() : handlePullDownFailed();
                 }, 1000);
-            },
-
-            // // 使用默认模板，只需配置text即可，如果同时配置了pullDownDom，以pullDownDom为主
-            // pullDownText: {
-            //     start: '下拉刷新吗？？？', // 下拉刷新前的文本。默认 下拉刷新
-            //     drop: '放开我，我要刷新', // 下拉刷新触发提示文本。默认 释放刷新
-            //     loading: '使出吃奶的力气刷新。。。', // 下拉刷新中文本。默认 刷新中...
-            //     success: '成功了', // 下拉刷新成功文本。默认 刷新成功
-            //     failed: '失败再试试' // 下拉刷新失败文本。默认 刷新失败
-            // },
-
-            // // 自定义下拉刷新dom，支持与默认模板混用，如果只配置某一项，其余则使用默认模板
-            // pullDownDom: {
-            //     start: '<div style="color:gray;">下拉刷新吗？？？</div>', // 下拉刷新前的html
-            //     drop: '<div style="color:blue;">放开我，我要刷新</div>', // 下拉刷新触发提示的html
-            //     loading: '<div style="color:black;">使出吃奶的力气刷新。。。</div>', // 下拉刷新中的html
-            //     success: '<div style="color:green;">成功了</div>', // 下拉刷新成功的html
-            //     failed: '<div style="color:red;">失败再试试</div>', // 下拉刷新失败的html
-            // },
+            }
         });
 
 
@@ -78,29 +61,28 @@
         function handlePullDownSuccess() {
 
             var count = Math.round(Math.random()*10);
-            var htmlArr = [];
 
-            while(count){
-                count--;
-                htmlArr.unshift(createList('item pullDown ' + pullDownTotal));
+            var oFragment = document.createDocumentFragment();
+
+            for (var i = 0; i < count; i++) {
                 pullDownTotal++;
+
+                var li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.innerHTML = 'item pullDown ' + pullDownTotal;
+
+                // oFragment.prepend(li);
+                oFragment.insertBefore(li, oFragment.firstElementChild);
             }
 
-            $listWrapper.prepend($(htmlArr.join('')));
+            listWrapper.insertBefore(oFragment, listWrapper.getElementsByTagName('li')[0]);
 
-            // 显示下拉刷新成功
             pullInstance.pullDownSuccess();
         }
 
         // 处理下拉刷新失败
         function handlePullDownFailed() {
-            // 显示下拉刷新成功
             pullInstance.pullDownFailed();
-        }
-
-        // 创建li dom
-        function createList(str) {
-            return '<li class="list-group-item">'+ str +'</li>';
         }
     </script>
 </body>
