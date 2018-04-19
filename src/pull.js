@@ -1,7 +1,7 @@
 /*!
- * Pull Plugin v1.0.0
+ * Pull Plugin v2.0.0
  * by caijf
- * @date 20170519
+ * @date 20180419
  */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
