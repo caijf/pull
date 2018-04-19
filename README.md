@@ -79,12 +79,12 @@ pullUpDom | object | - | - | 自定义上拉加载dom，支持与默认模板混
 
 实例方法 | 描述 
 ------------- | ------------- 
-instance.pullDownFailed() | 下拉刷新失败
-instance.pullDownSuccess() | 下拉刷新成功
+instance.pullDownFailed() | 显示下拉刷新失败状态
+instance.pullDownSuccess() | 显示下拉刷新成功状态
 instance.triggerPullDown() | 手动触发下拉刷新，从而触发 `onPullDown` 回调方法
-instance.pullUpFailed() | 上拉加载失败
-instance.pullUpSuccess() | 上拉加载成功，重置为上拉加载前的状态
-instance.pullUpDone() | 上拉加载完成，显示完成状态。后面不在触发上拉加载
+instance.pullUpFailed() | 显示上拉加载失败状态
+instance.pullUpSuccess() | 显示上拉加载成功，重置为上拉加载前的状态
+instance.pullUpDone() | 显示上拉加载完成状态。后面不在触发上拉加载。可通过resetPullUpDone方法重置
 instance.resetPullUpDone() | 重置上拉加载完成状态，重置为上拉加载前的状态
 instance.triggerPullUp() | 手动触发上拉加载，从而触发 `onPullUp` 回调方法
 instance.updateScrollAreaHeight() | 更新滚动区域高度
