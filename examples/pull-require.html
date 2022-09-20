@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
     <title>PullJS Examples usage</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="examples.css"></head>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./examples.css">
+</head>
+
 <body>
     <div class="header">
         <a href="javascript: history.back();" class="fl">
@@ -17,35 +21,35 @@
         <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
     <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
     -->
-    <ul class="list-group" id="listWrapper">
-        <li class="list-group-item">item 1</li>
-        <li class="list-group-item">item 2</li>
-        <li class="list-group-item">item 3</li>
-        <li class="list-group-item">item 4</li>
-        <li class="list-group-item">item 5</li>
-        <li class="list-group-item">item 6</li>
-        <li class="list-group-item">item 7</li>
-        <li class="list-group-item">item 8</li>
-        <li class="list-group-item">item 9</li>
-        <li class="list-group-item">item 10</li>
-        <li class="list-group-item">item 11</li>
-        <li class="list-group-item">item 12</li>
-        <li class="list-group-item">item 13</li>
-        <li class="list-group-item">item 14</li>
-        <li class="list-group-item">item 15</li>
-        <li class="list-group-item">item 16</li>
-        <li class="list-group-item">item 17</li>
-        <li class="list-group-item">item 18</li>
-        <li class="list-group-item">item 19</li>
-        <li class="list-group-item">item 20</li>
-    </ul>
-    <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
+        <ul class="list-group" id="listWrapper">
+            <li class="list-group-item">item 1</li>
+            <li class="list-group-item">item 2</li>
+            <li class="list-group-item">item 3</li>
+            <li class="list-group-item">item 4</li>
+            <li class="list-group-item">item 5</li>
+            <li class="list-group-item">item 6</li>
+            <li class="list-group-item">item 7</li>
+            <li class="list-group-item">item 8</li>
+            <li class="list-group-item">item 9</li>
+            <li class="list-group-item">item 10</li>
+            <li class="list-group-item">item 11</li>
+            <li class="list-group-item">item 12</li>
+            <li class="list-group-item">item 13</li>
+            <li class="list-group-item">item 14</li>
+            <li class="list-group-item">item 15</li>
+            <li class="list-group-item">item 16</li>
+            <li class="list-group-item">item 17</li>
+            <li class="list-group-item">item 18</li>
+            <li class="list-group-item">item 19</li>
+            <li class="list-group-item">item 20</li>
+        </ul>
+        <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
 <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
 -->
-</div>
+    </div>
 
-<script src="http://cdn.bootcss.com/require.js/2.3.3/require.js"></script>
-<script>
+    <script src="https://cdn.bootcss.com/require.js/2.3.3/require.js"></script>
+    <script>
         require.config({
             baseUrl: '../dist/',
             paths: {
@@ -120,7 +124,7 @@
             // 处理下拉刷新成功
             function handlePullDownSuccess() {
 
-                var count = Math.round(Math.random()*10);
+                var count = Math.round(Math.random() * 10);
 
                 var oFragment = document.createDocumentFragment();
 
@@ -148,7 +152,7 @@
             // 处理上拉加载成功
             function handlePullUpSuccess() {
 
-                var count = Math.round(Math.random()*10);
+                var count = Math.round(Math.random() * 10);
 
                 var oFragment = document.createDocumentFragment();
 
@@ -165,15 +169,15 @@
                 listWrapper.appendChild(oFragment);
 
                 // 超过20条即加载完成
-                if(pullUpTotal >= 20){
+                if (pullUpTotal >= 20) {
                     pullInstance.pullUpDone();
-                }else{
+                } else {
                     pullInstance.pullUpSuccess();
                 }
             }
-window.onerror = function (e) {
-    alert(e)
-}
+            window.onerror = function (e) {
+                alert(e)
+            }
             // 处理上拉加载失败
             function handlePullUpFailed() {
                 pullInstance.pullUpFailed();
@@ -181,4 +185,5 @@ window.onerror = function (e) {
         })
     </script>
 </body>
+
 </html>

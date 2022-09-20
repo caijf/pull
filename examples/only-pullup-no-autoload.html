@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
     <title>PullJS Examples only-pullup</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="examples.css"></head>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./examples.css">
+</head>
+
 <body>
     <div class="header">
         <a href="javascript: history.back();" class="fl">
@@ -34,10 +38,10 @@
         <!-- <div style=" padding: 10px; color: #eee; background: gray; text-align:center;">假如有广告~~~1~~~</div>
     <div style=" padding: 10px; color: #eee; background: blue; text-align:center;">假如有广告~~~2~~~</div>
     -->
-</div>
+    </div>
 
-<script src="../dist/pull.min.js"></script>
-<script>
+    <script src="../dist/pull.min.js"></script>
+    <script>
         var listWrapper = document.getElementById('listWrapper');
 
         var pullInstance = new Pull('listWrapper', {
@@ -54,7 +58,7 @@
         // 处理上拉加载成功
         function handlePullUpSuccess() {
 
-            var count = Math.round(Math.random()*10);
+            var count = Math.round(Math.random() * 10);
 
             var oFragment = document.createDocumentFragment();
 
@@ -71,9 +75,9 @@
             listWrapper.appendChild(oFragment);
 
             // 超过20条即加载完成
-            if(pullUpTotal >= 20){
+            if (pullUpTotal >= 20) {
                 pullInstance.pullUpDone();
-            }else{
+            } else {
                 pullInstance.pullUpSuccess();
             }
         }
@@ -84,4 +88,5 @@
         }
     </script>
 </body>
+
 </html>
