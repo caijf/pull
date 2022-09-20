@@ -1,12 +1,12 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var rename = require("gulp-rename");
+const { series, src, dest } = require('gulp');
+const uglify = require('gulp-uglify');
+const rename = require("gulp-rename");
 
-gulp.task('compress', function (cb) {
-    gulp.src('src/*.js')
+const compress = function () {
+    return src('src/*.js')
         .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('dist'))
-});
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(dest('dist'))
+}
 
-gulp.task('default', ['compress']);
+exports.default = series([compress])

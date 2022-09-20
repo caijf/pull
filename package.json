@@ -2,19 +2,19 @@
   "name": "pull-pro",
   "version": "2.0.0",
   "description": "",
-  "main": "./dist/pull.min.js",
-  "directories": {
-    "example": "examples"
-  },
+  "main": "dist/pull.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/caijf/pull.git"
   },
   "author": "caijf",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/caijf/pull/issues"
   },
